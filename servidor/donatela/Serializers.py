@@ -1,8 +1,6 @@
 
 from django.contrib.auth.models import User
-from django.db.models import fields
 from rest_framework import serializers
-from rest_framework.relations import HyperlinkedRelatedField, PrimaryKeyRelatedField, StringRelatedField
 
 from donatela import models
 
@@ -29,4 +27,12 @@ class OrganizacionSerializer(serializers.ModelSerializer):
             'descripcion',
             'account',
         )
+
+class CampanaSerializer(serializers.ModelSerializer):
     
+    organizacion = OrganizacionSerializer()
+
+    class Meta:
+        
+        model = models.CampanaModel
+        fields = "__all__"

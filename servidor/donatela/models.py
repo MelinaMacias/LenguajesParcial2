@@ -2,8 +2,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import CharField, TextField
-from django.db.models.fields.related import OneToOneField
+from django.db.models.fields import CharField, DecimalField, TextField
+from django.db.models.fields.related import ForeignKey, OneToOneField
+
+from  donatela.enums import EstadoCampana
 
 class Organizacion(models.Model):
     """Perfil para las organizaciones 
@@ -14,3 +16,20 @@ class Organizacion(models.Model):
     nombre = CharField(max_length=50, unique=True)
     descripcion = TextField(blank=True, default='')
 
+class CampanaModel(models.Model):
+    "Capañas llevadas a cabo por las organizaciones"
+
+    titulo = CharField(max_length=50, blank=False)
+    descripcion_corta = CharField(max_length=400)
+    url_imagen = CharField(blank=False, max_length=400)
+    descripcion_completa = TextField(blank=False)
+    recaudacion_esperada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
+    cantidad_recaudada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
+    organizacion = ForeignKey(Organizacion, on_delete=CASCADE)
+    estado_campana = CharField(
+        max_length=10,
+        choices=[(estado, estado.value) for estado in EstadoCampana]
+    )
+
+    def __str__(self):
+        return f'[ {self.titulo} - {self.estado_campana} ]'
