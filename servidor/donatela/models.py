@@ -2,7 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
-from django.db.models.fields import CharField, DecimalField, TextField
+from django.db.models.fields import CharField, DecimalField, EmailField, TextField
 from django.db.models.fields.related import ForeignKey, OneToOneField
 
 from  donatela.enums import EstadoCampana
@@ -16,8 +16,16 @@ class Organizacion(models.Model):
     nombre = CharField(max_length=50, unique=True)
     descripcion = TextField(blank=True, default='')
 
+class DonadorModel(models.Model):
+    """Modelo para almacenar la información de los donadores"""
+
+    nombres = CharField(max_length=50, blank=False)
+    apellidos = CharField(max_length=50)
+    correo = EmailField(blank=True)
+    cantidad_donada = DecimalField(blank=False, decimal_places=2, max_digits=6)
+
 class CampanaModel(models.Model):
-    "Capañas llevadas a cabo por las organizaciones"
+    """Capañas llevadas a cabo por las organizaciones"""
 
     titulo = CharField(max_length=50, blank=False)
     descripcion_corta = CharField(max_length=400)

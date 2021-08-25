@@ -36,3 +36,10 @@ class CampanaSerializer(serializers.ModelSerializer):
         
         model = models.CampanaModel
         fields = "__all__"
+
+class DonadorSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        
+        model = models.DonadorModel
+        fields = "__all__"
