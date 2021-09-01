@@ -1,5 +1,6 @@
 
 from django.contrib.auth.models import User
+from django.utils.functional import partition
 from rest_framework import serializers
 
 from donatela import models
@@ -12,7 +13,8 @@ class AccountSerializer(serializers.ModelSerializer):
 
         fields = [
             'username',
-            'email'
+            'email',
+            'is_active'
         ]
 
 class OrganizacionSerializer(serializers.ModelSerializer):
@@ -22,11 +24,12 @@ class OrganizacionSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = models.Organizacion
-        fields = (
+        fields = [
+            'id',
             'nombre',
             'descripcion',
             'account',
-        )
+        ]
 
 class CampanaSerializer(serializers.ModelSerializer):
     

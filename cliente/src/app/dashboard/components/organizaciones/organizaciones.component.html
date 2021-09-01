@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title"><strong>Organizaciones en espera de confirmación</strong></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Activa</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let organizacion of organizaciones">
+            <td>{{organizacion.id}}</td>
+            <td>{{organizacion.nombre}}</td>
+            <td>
+              {{organizacion.descripcion}}
+            </td>
+            <td *ngIf="organizacion.is_active" ><span class="badge bg-primary">{{organizacion.is_active}}</span></td>
+            <td *ngIf="!organizacion.is_active" ><span class="badge bg-danger">{{organizacion.is_active}}</span></td>
+            <td>
+              <i class="fas fa-lock text-primary pt-1"></i>
+              <i class="fas fa-unlock-alt text-danger pl-4 pt-1"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>

@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Organizaciones en espera de confirmación</h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body p-0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombres</th>
+          <th>Aepllidos</th>
+          <th>Correo</th>
+          <th>Cantidad donada $</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let donador of donadores">
+          <td>{{donador.id}}</td>
+          <td>{{donador.nombres}}</td>
+          <td>
+            {{donador.apellidos}}
+          </td>
+          <td><span>{{donador.correo}}</span></td>
+          <td>
+            <span>{{donador.cantidad_donada}}</span>
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body -->
+</div>
