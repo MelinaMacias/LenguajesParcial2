@@ -1,6 +1,7 @@
 
 export interface Campana {
 
+  id: number,
   titulo: string,
   descripcion_corta: string,
   estado_campana: string,

@@ -34,8 +34,7 @@ class CampanaModel(models.Model):
     recaudacion_esperada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
     cantidad_recaudada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
     organizacion = ForeignKey(Organizacion, on_delete=CASCADE)
-    estado_campana = CharField(
-        max_length=10,
+    estado_campana = CharField(max_length=10,
         choices=[(estado, estado.value) for estado in EstadoCampana]
     )
 

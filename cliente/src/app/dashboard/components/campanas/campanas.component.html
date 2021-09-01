@@ -1,1 +1,38 @@
-<p>campanas works!</p>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title"><strong>Campañas de la organización</strong></h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body p-0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>Descripcion</th>
+          <th>Activa</th>
+          <th>Recaudacion</th>
+          <th>Meta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let campana of campanas">
+          <td>{{campana.id}}</td>
+          <td>{{campana.titulo}}</td>
+          <td>
+            {{campana.descripcion_corta}}
+          </td>
+          <td *ngIf="campana.estado_campana" ><span class="badge bg-primary">{{campana.estado_campana}}</span></td>
+          <!-- <td *ngIf="!campana.is_active" ><span class="badge bg-danger">{{campana.is_active}}</span></td> -->
+          <td>
+            {{campana.cantidad_recaudada}}
+          </td>
+          <td>
+            {{campana.recaudacion_esperada}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body -->
+</div>
