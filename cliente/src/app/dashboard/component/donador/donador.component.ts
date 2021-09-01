@@ -10,39 +10,28 @@ import { DonadorService } from '../../services/donador.service';
 })
 export class DonadorComponent implements OnInit {
 
-
   donadores: Array<Donador> = []
   constructor(private donadorService: DonadorService) { }
 
   ngOnInit(): void {
 
-
-  this.donadorService.getDonadores().subscribe( (donadores: any) => {
+    this.donadorService.getDonadores().subscribe( (donadores: any) => {
 
       donadores.forEach( (donador: any) => {
-        // this.donadores.push({
-        //   id: donador.id,
-        //   nombres: donador.nombres,
-        //   apellidos: donador.apellidos,
-        //   correo: donador.correo,
-// cantidad_donada:
 
-        // })
+        this.donadores.push({
+          id: donador.id,
+          nombres: donador.nombres,
+          apellidos: donador.apellidos,
+          correo: donador.correo,
+          cantidad_donada: donador.cantidad_donada
 
+        });
 
-        // })
-      })
+      });
 
     });
 
-  //  id: number,
-  // nombres: string,
-  // apellidos: string,
-  // correo: string,
-  // cantidad_donada: number
   }
-
-
-
 
 }
