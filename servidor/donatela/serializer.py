@@ -108,9 +108,44 @@ class CreateCampanaSerializer(serializers.ModelSerializer):
         return nuevaCampana
 
 
+class DonadorSerializer(serializers.ModelSerializer):
+    
+    def get_serializer_context(self):
+        
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+
+
+    class Meta:
+        
+        model = models.DonadorModel
+        fields = "__all__"
+    
+    def create(self, data):
+
+        nuevoDonador = models.DonadorModel.objects.create(
+            nombres = data.get("nombres"),
+            apellidos = data.get("apellidos"),
+            correo = data.get("correo"),
+            cantidad_donada = data.get("cantidad_donada")
+        )
+
+        reqData = self.context['request'].data
+        campana = models.CampanaModel.objects.get(id = reqData.get("idCampana"))
+        campana.cantidad_recaudada += nuevoDonador.cantidad_donada
+        campana.donadores.add(nuevoDonador)
+        campana.save()
+
+        return nuevoDonador
+
+
 class CampanaSerializer(serializers.ModelSerializer):
     
     organizacion = OrganizacionSerializer()
+    donadores = DonadorSerializer(many = True)
 
     class Meta:
         
@@ -121,13 +156,6 @@ class CampanaSerializer(serializers.ModelSerializer):
 
         campana.estado_campana = data.get("estado_campana", campana.estado_campana).value
         campana.save()
-        
+
         return campana
 
-
-class DonadorSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        
-        model = models.DonadorModel
-        fields = "__all__"

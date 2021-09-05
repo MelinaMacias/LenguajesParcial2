@@ -5,4 +5,4 @@ class EstadoCampana(Enum):
     
     ACTIVA = "Activa"
     FINALIZADA = "Finalizada"
-    
+

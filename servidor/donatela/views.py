@@ -93,30 +93,26 @@ class DonadorView(ModelViewSet):
 
     def list(self, request):
 
-        donadores = DonadorModel.objects.all()
-        data = DonadorSerializer(donadores, many=True)
+        data = self.get_serializer(DonadorModel.objects.all(), many=True)
         
         return Response(data.data, status=status.HTTP_200_OK)
 
+
+    def retrieve(self, request, pk):
+
+        datos = self.get_serializer(DonadorModel.objects.get(id = pk))
+
+        return Response(datos.data)
+
+
+
     def create(self, request):
-        pass
-
-
-    # def post(self, request):
-
-    #     serializer = DonadorSerializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
         
-    #     data = serializer.data
-    #     newDonador = DonadorModel.objects.create(
-    #         nombres = data.get("nombres"),
-    #         apellidos = data.get("apellidos"),
-    #         correo = data.get("correo"),
-    #         cantidad_donada = data.get("cantidad_donada")
-    #     )
+        serializer = self.get_serializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
 
-        
-        # newDonador.save()
+        nuevoDonador = self.get_serializer(serializer.save())
 
-        # return Response(DonadorSerializer(newDonador).data, status = status.HTTP_201_CREATED)        
+        return Response(nuevoDonador.data, status=status.HTTP_201_CREATED)
+
     
