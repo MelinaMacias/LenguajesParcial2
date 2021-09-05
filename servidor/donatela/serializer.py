@@ -1,5 +1,4 @@
 
-from os import read
 from django.db.models import fields
 from rest_framework.schemas.coreapi import is_enabled
 from donatela import models
@@ -68,6 +67,7 @@ class OrganizacionSerializer(serializers.ModelSerializer):
 
         return organizacion
 
+
 class CreateCampanaSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -92,6 +92,21 @@ class CreateCampanaSerializer(serializers.ModelSerializer):
         }
 
 
+    def create(self, data):
+
+        nuevaCampana = models.CampanaModel.objects.create(
+            titulo = data.get("titulo"),
+            descripcion_corta = data.get("descripcion_corta"),
+            url_imagen = data.get("url_imagen"),
+            descripcion_completa = data.get("descripcion_completa"),
+            recaudacion_esperada = data.get("recaudacion_esperada"),
+            cantidad_recaudada = data.get("cantidad_recaudada"),
+            estado_campana = data.get("estado_campana"),
+            organizacion = self.context['request'].user.organizacion
+        )
+
+        return nuevaCampana
+
 
 class CampanaSerializer(serializers.ModelSerializer):
     
@@ -101,6 +116,14 @@ class CampanaSerializer(serializers.ModelSerializer):
         
         model = models.CampanaModel
         fields = "__all__"
+
+    def update(self, campana, data):
+
+        campana.estado_campana = data.get("estado_campana", campana.estado_campana).value
+        campana.save()
+        
+        return campana
+
 
 class DonadorSerializer(serializers.ModelSerializer):
     

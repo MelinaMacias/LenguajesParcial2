@@ -51,10 +51,20 @@ class CampanaView(ModelViewSet):
 
     def list(self, request):
         
-        campanas = CampanaModel.objects.filter(organizacion_id = request.user.id)
+        if( request.user.is_staff ):
+            campanas = CampanaModel.objects.all()
+        else:
+            campanas = CampanaModel.objects.filter(organizacion_id = request.user.id)
+        
         data = CampanaSerializer(campanas, many=True)
         
         return Response(data.data, status=status.HTTP_200_OK)
+
+
+    def retrieve(self, request, pk):
+        
+        campana = CampanaSerializer(CampanaModel.objects.get(id = pk))
+        return Response(campana.data, status=status.HTTP_200_OK)
 
 
     def create(self, request):
@@ -65,6 +75,15 @@ class CampanaView(ModelViewSet):
         newCampana = CampanaSerializer(serializer.save())
         
         return Response(newCampana.data, status = status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+
+        instance = CampanaModel.objects.get(id = pk)
+        serializer = CampanaSerializer(instance, data = request.data, partial= True)
+        serializer.is_valid(raise_exception = True)
+        campanaActualizada = CampanaSerializer(serializer.save())
+
+        return Response(campanaActualizada.data, status=status.HTTP_200_OK)
 
 
 class DonadorView(ModelViewSet):
@@ -82,4 +101,22 @@ class DonadorView(ModelViewSet):
     def create(self, request):
         pass
 
+
+    # def post(self, request):
+
+    #     serializer = DonadorSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+        
+    #     data = serializer.data
+    #     newDonador = DonadorModel.objects.create(
+    #         nombres = data.get("nombres"),
+    #         apellidos = data.get("apellidos"),
+    #         correo = data.get("correo"),
+    #         cantidad_donada = data.get("cantidad_donada")
+    #     )
+
+        
+        # newDonador.save()
+
+        # return Response(DonadorSerializer(newDonador).data, status = status.HTTP_201_CREATED)        
     
