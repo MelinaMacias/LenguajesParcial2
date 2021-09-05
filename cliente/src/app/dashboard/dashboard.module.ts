@@ -8,6 +8,7 @@ import { CampanasComponent } from './components/campanas/campanas.component';
 import { ContainerDashboardComponent } from './components/container-dashboard/container-dashboard.component';
 import { RouterModule } from '@angular/router';
 import { DonadorComponent } from './component/donador/donador.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 
 @NgModule({
@@ -21,6 +22,9 @@ import { DonadorComponent } from './component/donador/donador.component';
     CommonModule,
     RouterModule,
     DashboardRoutingModule
+  ],
+  providers: [
+    AuthenticationService
   ]
 })
 export class DashboardModule { }

@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import CharField, DecimalField, EmailField, TextField
-from django.db.models.fields.related import ForeignKey, OneToOneField
+from django.db.models.fields.related import ForeignKey, ManyToManyField, OneToOneField
 
 from  donatela.enums import EstadoCampana
 
@@ -16,6 +16,7 @@ class Organizacion(models.Model):
     nombre = CharField(max_length=50, unique=True)
     descripcion = TextField(blank=True, default='')
 
+
 class DonadorModel(models.Model):
     """Modelo para almacenar la información de los donadores"""
 
@@ -23,6 +24,7 @@ class DonadorModel(models.Model):
     apellidos = CharField(max_length=50)
     correo = EmailField(blank=True)
     cantidad_donada = DecimalField(blank=False, decimal_places=2, max_digits=6)
+    
 
 class CampanaModel(models.Model):
     """Capañas llevadas a cabo por las organizaciones"""
@@ -34,6 +36,7 @@ class CampanaModel(models.Model):
     recaudacion_esperada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
     cantidad_recaudada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
     organizacion = ForeignKey(Organizacion, on_delete=CASCADE)
+    donadores = ManyToManyField(DonadorModel)
     estado_campana = CharField(max_length=10,
         choices=[(estado, estado.value) for estado in EstadoCampana]
     )
