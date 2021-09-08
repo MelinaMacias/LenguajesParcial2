@@ -1,4 +1,5 @@
 
+from donatela.decoradores import registro_decorator
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -91,6 +92,7 @@ class DonadorView(ModelViewSet):
     serializer_class = DonadorSerializer
     queryset = DonadorModel.objects.all()
     permission_classes = [AllowAny]
+
 
     def list(self, request):
 

@@ -12,6 +12,7 @@ import { AuthenticationService } from './services/authentication/authentication.
 import { CrearCampanaComponent } from './components/crear-campana/crear-campana/crear-campana.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificacionesService } from './service/notificacion/notificacion.service';
+import { HasRoleDirective } from './directives/has-role/has-role.directive';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { NotificacionesService } from './service/notificacion/notificacion.servi
     CampanasComponent,
     ContainerDashboardComponent,
     DonadorComponent,
-    CrearCampanaComponent
+    CrearCampanaComponent,
+    HasRoleDirective
   ],
   imports: [
     CommonModule,
