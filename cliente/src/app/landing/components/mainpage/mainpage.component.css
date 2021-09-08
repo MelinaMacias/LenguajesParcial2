@@ -1,0 +1,11 @@
+
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background: url('/assets/images/mac.jpg');
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}

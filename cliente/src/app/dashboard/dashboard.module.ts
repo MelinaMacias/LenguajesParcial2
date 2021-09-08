@@ -9,6 +9,9 @@ import { ContainerDashboardComponent } from './components/container-dashboard/co
 import { RouterModule } from '@angular/router';
 import { DonadorComponent } from './component/donador/donador.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { CrearCampanaComponent } from './components/crear-campana/crear-campana/crear-campana.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotificacionesService } from './service/notificacion/notificacion.service';
 
 
 @NgModule({
@@ -16,15 +19,19 @@ import { AuthenticationService } from './services/authentication/authentication.
     OrganizacionesComponent,
     CampanasComponent,
     ContainerDashboardComponent,
-    DonadorComponent
+    DonadorComponent,
+    CrearCampanaComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     DashboardRoutingModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    NotificacionesService
   ]
 })
 export class DashboardModule { }

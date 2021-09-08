@@ -29,9 +29,9 @@ class DonadorModel(models.Model):
 class CampanaModel(models.Model):
     """Capañas llevadas a cabo por las organizaciones"""
 
-    titulo = CharField(max_length=50, blank=False)
+    titulo = CharField(max_length=100, blank=False)
     descripcion_corta = CharField(max_length=400)
-    url_imagen = CharField(blank=False, max_length=400)
+    url_imagen = CharField(blank=False, max_length=1000)
     descripcion_completa = TextField(blank=False)
     recaudacion_esperada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
     cantidad_recaudada = DecimalField(default=0.0, decimal_places=2, max_digits=6)

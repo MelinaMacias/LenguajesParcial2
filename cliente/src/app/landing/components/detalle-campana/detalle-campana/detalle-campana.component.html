@@ -1,0 +1,159 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Sidebar on click -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2"
+  id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+    <i class="fa fa-remove"></i>
+  </a>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button">Link 4</a>
+  <a href="#" class="w3-bar-item w3-button">Link 5</a>
+</nav>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme-d2 w3-left-align">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
+      href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Donatela</a>
+    <a href="#inicio" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Inicio</a>
+    <a routerLink="/campanas" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Campañas</a>
+    <a href="#team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Equipo</a>
+    <a routerLink="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal"><i class="fa fa-user"></i>
+      Iniciar sesion</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+    <a href="#inicio" class="w3-bar-item w3-button">Inicio</a>
+    <a href="#Equipo" class="w3-bar-item w3-button"></a>
+    <a href="#pricing" class="w3-bar-item w3-button">Price</a>
+    <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    <a href="#" class="w3-bar-item w3-button">Search</a>
+  </div>
+</div>
+
+<!-- Image Header -->
+
+<!-- Work Row -->
+<div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
+
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Widget: user widget style 1 -->
+      <div class="card card-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header"
+          style="background: url('{{campana.url_imagen}}') center center; font-weight: bold;">
+          <h3 class="widget-user-username text-right" style="text-shadow: 1px 2px 3px black; color: white;">
+
+          </h3>
+          <h5 class="widget-user-desc text-right" style="text-shadow: 1px 2px 3px black; color: white;">
+
+          </h5>
+        </div>
+        <div class="widget-user-image">
+          <img class="img-circle"
+            src="{{campana.url_imagen}}"
+            alt="User Avatar">
+        </div>
+        <div class="card-footer text-secondary">
+          <div class="row">
+            <div class="col-sm-4 border-right">
+              <div class="description-block">
+                <h5 class="description-header">{{campana.recaudacion_esperada}}</h5>
+                <span class="description-text">Meta monetaria </span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 border-right">
+              <div class="description-block">
+                <h5 class="description-header">{{campana.cantidad_recaudada}}</h5>
+                <span class="description-text">Monto alcanzado</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4">
+              <div class="description-block">
+                <h5 class="description-header">{{campana.donadores.length}}</h5>
+                <span class="description-text">Donadores</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+      <!-- /.widget-user -->
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <!-- Box Comment -->
+    <div class="card card-widget">
+      <div class="card-header">
+        <h3 class="text-dark"><strong>{{campana.titulo}}</strong></h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body d-flex">
+        <img class="img-fluid pad" src="{{campana.url_imagen}}" alt="Photo" width="400">
+
+        <div>
+          <p style="top: 20px; color: black; padding: 12px;">{{campana.descripcion_completa}}</p>
+          <div class="progress" style="margin: 12px;">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+              <span class="sr-only">40% Complete (success)</span>
+            </div>
+          </div>
+
+          <div style="font-size: 2em; color: black;" class="text-center">
+            <span class="text-secondary">Porcentaje recaudado %46</span>
+          </div>
+          <br>
+          <br>
+          <button class="btn btn-primary col-12" style="margin: 10px 12px 0px 10px;">Donar</button>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /.card -->
+  </div>
+
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center" style="margin-bottom: 0px;">
+  <h4>Siguenos en nuestras redes sociales</h4>
+  <br>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Facebook"><i class="fa fa-facebook"></i></a>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Twitter"><i class="fa fa-twitter"></i></a>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
+  <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i
+      class="fa fa-linkedin"></i></a>
+  <br><br>
+  <p>
+    © Copyright 2021 - 2022 Ultima Hora| Guayaquil, Ecuador
+  </p>
+  <p>
+    Todos los derechos reservados | Aviso Legal
+  </p>
+
+  <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-padding w3-teal w3-hide-small">Ir al inicio</span>
+    <a class="w3-button w3-theme" href="#inicio"><span class="w3-xlarge">
+        <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+</footer>

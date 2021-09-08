@@ -1,7 +1,9 @@
 
 from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import permission_classes
 
 from donatela.models import CampanaModel, DonadorModel, Organizacion
 from donatela.serializer import OrganizacionSerializer, CampanaSerializer, DonadorSerializer, CreateCampanaSerializer
@@ -10,7 +12,8 @@ class OrganizacionView(ModelViewSet):
 
     serializer_class = OrganizacionSerializer
     queryset = Organizacion.objects.all()
-
+    permission_classes = [AllowAny]
+    
     def list(self, request):
 
         organizaciones = Organizacion.objects.all()
@@ -18,13 +21,14 @@ class OrganizacionView(ModelViewSet):
         
         return Response(data.data, status=status.HTTP_200_OK)
     
+
     def retrieve(self,request,pk):
         organizaciones = Organizacion.objects.get(id = pk)
         datos =  OrganizacionSerializer(organizaciones)
 
         return Response(datos.data)
     
-
+    
     def create(self,request):
         
         data= self.get_serializer(data = request.data)
@@ -32,7 +36,6 @@ class OrganizacionView(ModelViewSet):
         newOrganizacion = OrganizacionSerializer(data.save())
 
         return Response(newOrganizacion.data, status=status.HTTP_201_CREATED)
-
 
     def update(self, request, pk):
 
@@ -51,10 +54,7 @@ class CampanaView(ModelViewSet):
 
     def list(self, request):
         
-        if( request.user.is_staff ):
-            campanas = CampanaModel.objects.all()
-        else:
-            campanas = CampanaModel.objects.filter(organizacion_id = request.user.id)
+        campanas = CampanaModel.objects.all()
         
         data = CampanaSerializer(campanas, many=True)
         
@@ -71,10 +71,10 @@ class CampanaView(ModelViewSet):
         
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
         newCampana = CampanaSerializer(serializer.save())
         
         return Response(newCampana.data, status = status.HTTP_201_CREATED)
+
 
     def update(self, request, pk):
 
@@ -103,7 +103,6 @@ class DonadorView(ModelViewSet):
         datos = self.get_serializer(DonadorModel.objects.get(id = pk))
 
         return Response(datos.data)
-
 
 
     def create(self, request):

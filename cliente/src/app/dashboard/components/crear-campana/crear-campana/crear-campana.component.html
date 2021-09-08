@@ -1,0 +1,58 @@
+
+<button class="btn btn-default col-3" routerLink="../" style="margin-bottom: 12px;">Regresar</button>
+
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Crear nueva campaña</h3>
+    </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <form class="form-horizontal">
+    <div class="card-body">
+      <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Título</label>
+        <div class="col-sm-10">
+          <input type="text" [formControl]="tituloField" class="form-control"
+            placeholder="Ingrese el título de la campaña">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Descripción corta</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" [formControl]="desCortaField" id="inputPassword3"
+            placeholder="Ingrese una descripción preliminar"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Descripción larga</label>
+        <div class="col-sm-10">
+          <textarea type="text" [formControl]="desLargaField" class="form-control"
+            placeholder="Ingrese la descripción completa de la campaña"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Recaudación esperada</label>
+        <div class="col-sm-10">
+          <input type="" [formControl]="cantEsperadaField" class="form-control" min="0"
+            placeholder="Ingrese la meta monetaria de la campaña">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Imagen de la campaña</label>
+        <div class="col-sm-10">
+          <input type="text" [formControl]="urlImagenField" class="form-control"
+            placeholder="Ingrese una URL con la imagen para la campaña">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary col-4" (click)="registrarCampana()">Registrar campaña</button>
+
+    </div>
+    <!-- /.card-body -->
+
+    <!-- /.card-footer -->
+  </form>
+</div>

@@ -26,8 +26,7 @@ export class AuthenticationService {
 
     return new Promise( (res, rej) => {
 
-      this.http.post(
-        `${environment.main_url}/login`, user, this.httpOptions)
+      this.http.post(`${environment.main_url}/login/`, user, this.httpOptions)
         .subscribe(
           (token: any) => {
 
@@ -37,8 +36,7 @@ export class AuthenticationService {
 
           },
           (error: any) => { rej(error.error); }
-
-      );
+        );
 
     });
 

@@ -23,9 +23,8 @@
             </td>
             <td *ngIf="organizacion.is_active" ><span class="badge bg-primary">{{organizacion.is_active}}</span></td>
             <td *ngIf="!organizacion.is_active" ><span class="badge bg-danger">{{organizacion.is_active}}</span></td>
-            <td>
-              <i class="action-btn fas fa-unlock-alt text-primary pt-1"></i>
-              <i class="action-btn fas fa-lock text-danger pl-4 pt-1"></i>
+            <td class="text-center">
+              <i class="action-btn fas fa-unlock-alt text-primary pt-1" style="font-size: 1.8em"></i>
             </td>
           </tr>
         </tbody>

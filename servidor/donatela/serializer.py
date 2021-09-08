@@ -1,4 +1,5 @@
 
+from donatela.enums import EstadoCampana
 from django.db.models import fields
 from rest_framework.schemas.coreapi import is_enabled
 from donatela import models
@@ -41,6 +42,7 @@ class OrganizacionSerializer(serializers.ModelSerializer):
             'password': {'write_only': True},
         }
 
+    
     def create(self, data):
         
         newAccount = User.objects.create_user(
@@ -78,7 +80,6 @@ class CreateCampanaSerializer(serializers.ModelSerializer):
             'url_imagen',
             'descripcion_completa',
             'recaudacion_esperada',
-            'cantidad_recaudada',
             'estado_campana'
         ]
 
@@ -94,14 +95,15 @@ class CreateCampanaSerializer(serializers.ModelSerializer):
 
     def create(self, data):
 
+        breakpoint()
         nuevaCampana = models.CampanaModel.objects.create(
             titulo = data.get("titulo"),
             descripcion_corta = data.get("descripcion_corta"),
             url_imagen = data.get("url_imagen"),
             descripcion_completa = data.get("descripcion_completa"),
             recaudacion_esperada = data.get("recaudacion_esperada"),
-            cantidad_recaudada = data.get("cantidad_recaudada"),
-            estado_campana = data.get("estado_campana"),
+            cantidad_recaudada = 0,
+            estado_campana = EstadoCampana.ACTIVA.value,
             organizacion = self.context['request'].user.organizacion
         )
 
