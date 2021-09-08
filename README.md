@@ -8,7 +8,7 @@
 
 ## Arquitectura de la pagina web:
 ---
-<p align="center"><img src="./img/arqutectura.png"/></p> 
+<p align="center"><img src="./img/arquitectura.png"/></p> 
 La arquitectura general de la aplicación se basa en Cliente/Servidor. Utilizaremos un paradigma orientado a objetos (POO), y el modelo arquitectural es MVC para el back-end y MV* para el Font-end. Para el desarrollo Font-end se hace uso del framework Angular con el lenguaje de programación TypeScript. 
 En el lado del servidor se utiliza el lenguaje de programación Python con el framework Django. Se hace uso de conceptos de programación funcional (PF) para el tratamiento de datos y programación orientada a aspectos (POA) para realizar una estrategia de registro de actividad.
 
