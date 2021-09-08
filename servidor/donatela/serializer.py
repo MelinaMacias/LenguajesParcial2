@@ -94,8 +94,7 @@ class CreateCampanaSerializer(serializers.ModelSerializer):
 
 
     def create(self, data):
-
-        breakpoint()
+        
         nuevaCampana = models.CampanaModel.objects.create(
             titulo = data.get("titulo"),
             descripcion_corta = data.get("descripcion_corta"),

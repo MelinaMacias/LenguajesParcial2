@@ -24,6 +24,7 @@ export class DetalleCampanaComponent implements OnInit {
     this.router.params.subscribe( (params: any) => {
 
       this.campanaService.getCampana(params.id).subscribe( (campana:any) => {
+        campana['porcentajeRecolectado'] = (campana.cantidad_recaudada * 100) / campana.recaudacion_esperada;
         this.campana = campana;
 
       });

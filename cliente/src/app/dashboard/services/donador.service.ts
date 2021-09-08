@@ -17,4 +17,10 @@ export class DonadorService {
 
   }
 
+  agregarDonacion(donador: any) {
+
+    return this.http.post(`${environment.main_url}/api/donatela/donadores/`, donador)
+
+  }
+
 }

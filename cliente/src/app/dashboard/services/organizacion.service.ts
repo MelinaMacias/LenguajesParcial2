@@ -16,7 +16,7 @@ export class OrganizacionService {
     this.httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        "Authentication": `JWT ${localStorage.getItem("token")}`
+        "Authorization": `JWT ${localStorage.getItem("token")}`
       })
     }
 
@@ -31,6 +31,12 @@ export class OrganizacionService {
   createOrganizacion(organizacion: any){
 
     return this.http.post(`${environment.main_url}/${this.PATH}`, organizacion);
+
+  }
+
+  updateOrganizacion(id: number, organizacion: any) {
+
+    return this.http.put(`${environment.main_url}/${this.PATH}${id}/`, organizacion, this.httpOptions);
 
   }
 

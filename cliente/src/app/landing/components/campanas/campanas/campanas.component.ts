@@ -18,6 +18,7 @@ export class CampanasComponent implements OnInit {
 
         campanasList.forEach( (campana: any) => {
 
+          campana['porcentajeRecolectado'] = (campana.cantidad_recaudada * 100) /campana.recaudacion_esperada;
           this.campanas.push(campana);
 
         });

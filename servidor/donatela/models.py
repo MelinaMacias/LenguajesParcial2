@@ -33,7 +33,7 @@ class CampanaModel(models.Model):
     descripcion_corta = CharField(max_length=400)
     url_imagen = CharField(blank=False, max_length=1000)
     descripcion_completa = TextField(blank=False)
-    recaudacion_esperada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
+    recaudacion_esperada = DecimalField(default=0.0, decimal_places=2, max_digits=12)
     cantidad_recaudada = DecimalField(default=0.0, decimal_places=2, max_digits=6)
     organizacion = ForeignKey(Organizacion, on_delete=CASCADE)
     donadores = ManyToManyField(DonadorModel)

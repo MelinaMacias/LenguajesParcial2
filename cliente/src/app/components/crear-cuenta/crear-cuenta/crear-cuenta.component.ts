@@ -19,7 +19,6 @@ export class CrearCuentaComponent implements OnInit {
   contrasenaField: FormControl;
   descripcionField: FormControl;
 
-
   constructor(
     private organizacionService: OrganizacionService,
     private notificacionesService: NotificacionesService,

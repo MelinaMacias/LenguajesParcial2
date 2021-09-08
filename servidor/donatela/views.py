@@ -90,6 +90,7 @@ class DonadorView(ModelViewSet):
 
     serializer_class = DonadorSerializer
     queryset = DonadorModel.objects.all()
+    permission_classes = [AllowAny]
 
     def list(self, request):
 

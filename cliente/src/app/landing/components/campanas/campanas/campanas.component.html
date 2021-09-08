@@ -58,20 +58,21 @@
 
             <div>
               <p style="top: 20px; color: black; padding: 12px;">{{campana.descripcion_completa}}</p>
-              <div class="progress" style="margin: 12px;">
-                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                  <span class="sr-only">40% Complete (success)</span>
+              <div class="progress mb-3" style="margin: 12px;">
+                <div class="progress-bar bg-success text-center" role="progressbar"
+                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="campana.porcentajeRecolectado + '%' ">
+                  {{campana.porcentajeRecolectado}}%
                 </div>
               </div>
 
               <div style="font-size: 2em; color: black;" class="text-center">
-                <span class="text-secondary">Porcentaje recaudado %46</span>
+                <span class="text-secondary">Porcentaje recaudado {{campana.porcentajeRecolectado}}%</span>
               </div>
               <br>
               <br>
 
               <div>
-                <button class="btn btn-primary col-5" style="margin: 12px">Donar</button>
+                <button routerLink="/donacion/{{campana.id}}" class="btn btn-primary col-5" style="margin: 12px">Donar</button>
                 <button routerLink="/campana/{{campana.id}}" class="btn btn-primary col-5" style="margin: 12px">Detalles</button>
               </div>
 

@@ -22,6 +22,7 @@ export class MainpageComponent implements OnInit {
 
       campanas.reverse().splice(0, 3).forEach( (campana: any) => {
 
+        campana['porcentajeRecolectado'] = (campana.cantidad_recaudada * 100) /campana.recaudacion_esperada;
         this.lastCampanas.push(campana);
 
       });
